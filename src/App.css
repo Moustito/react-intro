@@ -44,3 +44,7 @@
 .TodoList {
   list-style: none;
 }
+
+.deleteIcon {
+  padding-left: 10px;
+}

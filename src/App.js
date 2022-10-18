@@ -1,6 +1,7 @@
 // import logo from "./logo.svg";
 import { useState } from "react";
 import "./App.css";
+import Footer from "./Components/Footer";
 import Todo from "./Components/Todo";
 import TodoForm from "./Components/TodoForm";
 
@@ -10,6 +11,7 @@ function App() {
     { id: 1, nom: "Learn React" },
     { id: 2, nom: "Be Awsome !" },
   ]);
+  const [active, setActive] = useState(false)
 
   // Comportements
   const handleRemove = (id) => {
@@ -38,6 +40,10 @@ function App() {
     setTodos(todosCopy);
   };
 
+  const checked = (event) => {
+    console.log(event.target.checked);
+  };
+
   // Affichage (render)
   return (
     <div className="App">
@@ -46,11 +52,13 @@ function App() {
 
       <h3 className="TodoList__title">Todos</h3>
       <ul className="TodoList">
-        {" "}
-        {todos.map((todoList) => (
-          <Todo todoInfo={todoList} onTodoRemove={handleRemove} key={todoList.id} />
-        ))}
+        {todos.map((todoList) => 
+        (
+          <Todo todoInfo={todoList} onTodoRemove={handleRemove} key={todoList.id} checked={checked} active={active} setActive={setActive}/>
+        )
+        )}
       </ul>
+      <Footer todos={todos} active={active}/>
     </div>
   );
 }
